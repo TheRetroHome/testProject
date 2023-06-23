@@ -16,4 +16,4 @@ use App\Http\Controllers\MainController;
 
 Route::get('/',[HomeController::class,'home'])->name('home');
 Route::get('/contact',[HomeController::class,'contact'])->name('contact');
-Route::resource('/posts', MainController::class);
+Route::resource('/posts', MainController::class)->only(['index','show','create','store']);

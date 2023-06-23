@@ -19,7 +19,7 @@ class MainController extends Controller
      */
     public function create()
     {
-        //
+        return view('posts.create');
     }
 
     /**
@@ -27,7 +27,7 @@ class MainController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        dd('OK');
     }
 
     /**
