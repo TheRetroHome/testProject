@@ -31,14 +31,16 @@ class MainController extends Controller
           'title'=>$request->input('title'),
            'content'=>$request->input('content'),
        ]);
+       $request->session()->flash('status','Blog post was created!');
        return redirect()->route('posts.show',['post'=>$blog->id]);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(string $id, Request $request)
     {
+        $request->session()->reflash();
         return view('posts.show',['post'=>BlogPost::findOrFail($id)]);
     }
 
