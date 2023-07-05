@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\BlogPost;
+use App\Http\Requests\PostRequest;
 class MainController extends Controller
 {
     /**
@@ -25,7 +26,7 @@ class MainController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(PostRequest $request)
     {
        $blog = BlogPost::create([
           'title'=>$request->input('title'),
