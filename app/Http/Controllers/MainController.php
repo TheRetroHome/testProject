@@ -27,7 +27,11 @@ class MainController extends Controller
      */
     public function store(Request $request)
     {
-        dd('OK');
+       $blog = BlogPost::create([
+          'title'=>$request->input('title'),
+           'content'=>$request->input('content'),
+       ]);
+       return redirect()->route('posts.show',['post'=>$blog->id]);
     }
 
     /**
