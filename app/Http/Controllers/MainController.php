@@ -64,8 +64,10 @@ class MainController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(BlogPost $post)
     {
-        //
+        $post->delete();
+        session()->flash('status','Blog post was delete');
+        return redirect()->route('posts.index');
     }
 }
