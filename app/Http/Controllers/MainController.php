@@ -28,10 +28,8 @@ class MainController extends Controller
      */
     public function store(PostRequest $request)
     {
-       $blog = BlogPost::create([
-          'title'=>$request->input('title'),
-           'content'=>$request->input('content'),
-       ]);
+        $data = $request->validated();
+       $blog = BlogPost::create($data);
        $request->session()->flash('status','Blog post was created!');
        return redirect()->route('posts.show',['post'=>$blog->id]);
     }
@@ -41,7 +39,6 @@ class MainController extends Controller
      */
     public function show(string $id, Request $request)
     {
-        $request->session()->reflash();
         return view('posts.show',['post'=>BlogPost::findOrFail($id)]);
     }
 
@@ -50,15 +47,18 @@ class MainController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        return view('posts.edit',['post'=>BlogPost::findOrFail($id)]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(PostRequest $request, BlogPost $post)
     {
-        //
+        $data = $request->validated();
+        $post->update($data);
+        $request->session()->flash('status','Blog post was updated');
+        return redirect()->route('posts.show',['post'=>$post->id]);
     }
 
     /**

@@ -22,8 +22,8 @@ class PostRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title'=>'required|max:100',
-            'content'=>'required'
+            'title'=>'required|max:100|min:5',
+            'content'=>'required|min:10'
         ];
     }
     public function messages()
@@ -31,7 +31,9 @@ class PostRequest extends FormRequest
         return [
           'title.required'=>'Поле title не было заполнено',
           'title.max'=>'Превышен лимит символов в title',
-          'content.required'=>'Поле content обязательно'
+            'title.min'=>'Поле title должно быть заполнено минимально в 5 символов',
+          'content.required'=>'Поле content обязательно',
+            'content.min'=>'Поле content должно быть заполнено минимально в 5 символов'
         ];
     }
 }
