@@ -22,8 +22,8 @@ class DeletePostTest extends TestCase
         ]);
         $response->assertStatus(302);
         $this->assertDatabaseMissing('blogpost', [
-            'title'=>'Где я',
-            'content'=>'Ничего не ясно'
+            'title'=>$post->title,
+            'content'=>$post->content
         ]);
         $response->assertStatus(302);
     }
